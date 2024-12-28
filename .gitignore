@@ -1,0 +1,20 @@
+# Ignore Python environment and IDE files
+__pycache__/
+*.pyc
+*.pyo
+.vscode/
+.idea/
+
+# Ignore .env file for sensitive credentials
+.env
+
+# Ignore SQLite database file
+*.db
+
+# Ignore any compiled files
+*.exe
+*.dll
+*.so
+
+# Ignore log files
+*.log

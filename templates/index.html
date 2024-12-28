@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI & Tech Newsletter</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <a href="/">AI Updates</a>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <!-- <li><a href="#">Features</a></li> -->
+                    <!-- <li><a href="#">Pricing</a></li> -->
+                    <li><a href="/about">About Us</a></li>
+                    <!-- <li><a href="#">Contact</a></li> -->
+                </ul>
+            </nav>
+            <div class="cta">
+                <a href="/signup" class="btn">Sign Up</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="flash-messages">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <ul>
+                    {% for message in messages %}
+                        <li class="flash-message {{category}}">{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+    </div>
+
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-text">
+                <h1>Stay Ahead in AI & Tech</h1>
+                <p>Subscribe now to get curated AI news and product updates delivered straight to your inbox.</p>
+                <a href="/signup" class="btn-hero">Get Started for Free</a>
+            </div>
+            <div class="hero-image">
+                <img src="{{ url_for('static', filename='images/hero-img.jpg') }}" alt="AI illustration">
+            </div>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="features-container">
+            <div class="feature">
+                <div class="feature-icon">
+                    <img src="{{ url_for('static', filename='images/mail-logo.png') }}" alt="Feature 1">
+                </div>
+                <h3>Curated AI News</h3>
+                <p>Get the latest updates and breakthroughs in Artificial Intelligence directly in your inbox.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">
+                    <img src="{{ url_for('static', filename='images/robo-logo.png') }}" alt="Feature 2">
+                </div>
+                <h3>Product Alerts</h3>
+                <p>Be the first to know about innovative AI tools and products as they hit the market.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">
+                    <img src="{{ url_for('static', filename='images/lock-logo.jpeg') }}" alt="Feature 3">
+                </div>
+                <h3>Customizable Preferences</h3>
+                <p>Tailor your subscription to focus on topics that matter most to you.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="demo">
+        <div class="demo-container">
+            <div class="demo-text">
+                <h2>See It In Action</h2>
+                <p>Take a look at how your curated AI news and product updates will look in your inbox. Swipe through the examples below!</p>
+            </div>
+            <div class="demo-carousel">
+                <div class="carousel">
+                    <img src="{{ url_for('static', filename='images/ex1.png') }}" alt="Example Email 1">
+                    <img src="{{ url_for('static', filename='images/ex2.png') }}" alt="Example Email 2">
+                    <img src="{{ url_for('static', filename='images/ex3.png') }}" alt="Example Email 3">
+                </div>
+                <div class="carousel-buttons">
+                    <button class="prev">&#10094;</button>
+                    <button class="next">&#10095;</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="{{ url_for('static', filename='carousel.js') }}"></script>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <p>&copy; 2024 AI & Tech Newsletter. All Rights Reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

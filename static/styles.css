@@ -1,0 +1,386 @@
+/* General Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #121212; /* Dark background */
+  color: #f0f0f0; /* Light text */
+  line-height: 1.6;
+}
+
+/* Header Styles */
+.header {
+  background-color: #1f1f1f; /* Slightly lighter dark for the header */
+  padding: 15px 20px;
+  border-bottom: 2px solid #333; /* Subtle separator */
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Logo */
+.logo a {
+  text-decoration: none;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #00d1b2; /* Vibrant green for the logo */
+}
+
+/* Navigation */
+.nav ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.nav a {
+  text-decoration: none;
+  color: #f0f0f0;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+}
+
+.nav a:hover {
+  color: #00d1b2; /* Highlight on hover */
+}
+
+/* Call-to-Action Button */
+.cta .btn {
+  background-color: #00d1b2;
+  color: #121212;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.cta .btn:hover {
+  background-color: #00a58e; /* Darker green on hover */
+  color: #fff;
+}
+
+/* Hero Section */
+.hero {
+  background-color: #121212; /* Dark theme background */
+  padding: 60px 20px;
+  text-align: center;
+  display: block; /* Ensure it takes full width */
+}
+
+.hero-container {
+  display: block; /* Ensure it stacks vertically */
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.hero-text {
+  padding: 20px;
+}
+
+.hero-text h1 {
+  font-size: 2.5rem;
+  color: #00d1b2; /* Vibrant highlight */
+}
+
+.hero-text p {
+  margin: 20px 0;
+  font-size: 1.2rem;
+  color: #f0f0f0; /* Light text */
+}
+
+.btn-hero {
+  background-color: #00d1b2;
+  color: #121212;
+  padding: 15px 30px;
+  font-size: 1rem;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-hero:hover {
+  background-color: #00a58e; /* Slightly darker green */
+  color: #fff;
+}
+
+.hero-image {
+  padding: 20px;
+}
+
+.hero-image img {
+  max-width: 50%;
+  border-radius: 10px;
+}
+
+/* Features Section */
+.features {
+  background-color: #1f1f1f; /* Dark theme background */
+  padding: 60px 20px;
+  color: #f0f0f0; /* Light text */
+  text-align: center;
+  display: block; /* Ensure it takes full width */
+}
+
+.features-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 30px;
+}
+
+.feature {
+  background-color: #292929; /* Slightly lighter for contrast */
+  border-radius: 10px;
+  padding: 30px;
+  max-width: 300px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+}
+
+.feature-icon img {
+  max-width: 80px;
+  margin-bottom: 20px;
+}
+
+.feature h3 {
+  font-size: 1.5rem;
+  color: #00d1b2; /* Vibrant green for headings */
+  margin-bottom: 15px;
+}
+
+.feature p {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #dcdcdc; /* Softer light text for descriptions */
+}
+
+/* Demo Section */
+.demo {
+  background-color: #121212; /* Dark background matching theme */
+  padding: 50px 0;
+  color: #f0f0f0; /* Light text color to match the theme */
+  display: block; /* Ensure it takes full width */
+}
+
+/* Demo Text Container */
+.demo-text {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.demo-text h2 {
+  font-size: 36px; /* Match font size with header section */
+  font-family: 'Arial', sans-serif; /* Use consistent font */
+  font-weight: bold;
+  color: #f0f0f0; /* Light color for the heading */
+  margin-bottom: 20px;
+}
+
+.demo-text p {
+  font-size: 18px; /* Slightly smaller font size */
+  color: #b0b0b0; /* Lighter color for the subheading */
+  max-width: 800px; /* Limit width for better readability */
+  margin: 0 auto;
+  line-height: 1.6;
+  padding: 0 20px; /* Add some padding for better layout */
+}
+
+/* Demo Carousel Styles */
+.demo-carousel {
+  position: relative;
+  max-width: 800px; /* Adjusted for larger view */
+  margin: 0 auto;
+  overflow: hidden; /* Hide images out of view */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Shadow to create depth */
+  background-color: #1e1e1e; /* Dark background */
+}
+
+/* Carousel Images */
+.carousel {
+  display: flex;
+  transition: transform 0.5s ease-in-out; /* Smooth sliding transition */
+}
+
+.carousel img {
+  width: 100%;
+  height: auto;
+  object-fit: cover; /* Maintain aspect ratio without stretching */
+  border-radius: 10px; /* Rounded corners for images */
+}
+
+/* Carousel Navigation Buttons */
+.carousel-buttons {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  transform: translateY(-50%);
+}
+
+.carousel-buttons button {
+  background: rgba(0, 0, 0, 0.6);
+  color: #f0f0f0;
+  border: none;
+  padding: 15px;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: background 0.3s ease, transform 0.3s ease;
+  font-size: 18px;
+}
+
+.carousel-buttons button:hover {
+  background: #00d1b2;
+  color: #121212;
+  transform: scale(1.1); /* Button hover effect */
+}
+
+/* Footer Section */
+.footer {
+  background-color: #121212; /* Dark background to match theme */
+  color: #b0b0b0; /* Light gray text color */
+  padding: 20px 0;
+  text-align: center;
+  font-size: 14px;
+}
+
+.footer-container p {
+  margin: 0;
+  font-weight: normal;
+}
+
+.footer p {
+  color: #888; /* Slightly lighter gray for the copyright notice */
+}
+
+.footer p a {
+  color: #00d1b2; /* Blue color for any links if added */
+  text-decoration: none;
+}
+
+.footer p a:hover {
+  text-decoration: underline;
+}
+
+/* Signup Form */
+.form-container {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.form-container h1 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.form-container form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-container label {
+  text-align: left;
+  margin-bottom: 5px;
+  font-weight: bold;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.form-container input {
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.form-container button {
+  padding: 10px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.form-container button:hover {
+  background-color: #45a049;
+}
+
+
+
+/* General flash message styles */
+.flash-message {
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* Success message */
+.flash-message.success {
+  background-color: #28a745;
+  color: white;
+}
+
+/* Error message */
+.flash-message.error {
+  background-color: #dc3545;
+  color: white;
+}
+
+/* Info message */
+.flash-message.info {
+  background-color: #17a2b8;
+  color: white;
+}
+
+/* Warning message */
+.flash-message.warning {
+  background-color: #ffc107;
+  color: white;
+}
+
+/* For a smooth fade-in effect */
+.flash-message {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Keyframes for the fade-in effect */
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+  }
+  to {
+      opacity: 1;
+  }
+}
