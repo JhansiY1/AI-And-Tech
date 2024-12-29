@@ -1,13 +1,11 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
 import random
 import smtplib
-import sqlite3
-from dotenv import load_dotenv
+import psycopg2
 import os
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
-import psycopg2
-
+from dotenv import load_dotenv
 
 app = Flask(__name__)
 app.secret_key = os.urandom(24)  # Secure random key for session
@@ -62,7 +60,7 @@ def subscribe():
     cursor = conn.cursor()
 
     # Check if the email already exists in the database
-    cursor.execute('SELECT * FROM subscribers WHERE email = ?', (email,))
+    cursor.execute('SELECT * FROM subscribers WHERE email = %s', (email,))
     existing_user = cursor.fetchone()
 
     # If the email exists, send a new OTP instead of inserting into the database
@@ -76,7 +74,7 @@ def subscribe():
             return redirect(url_for('signup'))
 
         # Update OTP for existing email
-        cursor.execute('UPDATE subscribers SET otp = ? WHERE email = ?', (otp, email))
+        cursor.execute('UPDATE subscribers SET otp = %s WHERE email = %s', (otp, email))
         conn.commit()
         conn.close()
 
@@ -92,7 +90,7 @@ def subscribe():
         return redirect(url_for('signup'))
 
     # Insert the email and OTP into the database (without name)
-    cursor.execute('INSERT INTO subscribers (name, email, otp) VALUES (?, ?, ?)', ("Unknown", email, otp))
+    cursor.execute('INSERT INTO subscribers (name, email, otp) VALUES (%s, %s, %s)', ("Unknown", email, otp))
     conn.commit()
     conn.close()
 
@@ -114,13 +112,13 @@ def verify():
     cursor = conn.cursor()
 
     # Retrieve the OTP stored in the database for the given email
-    cursor.execute('SELECT otp FROM subscribers WHERE email = ?', (email,))
+    cursor.execute('SELECT otp FROM subscribers WHERE email = %s', (email,))
     subscriber = cursor.fetchone()
 
-    if subscriber and subscriber['otp'] == entered_otp:
+    if subscriber and subscriber[0] == entered_otp:
         # OTP is correct
         name = request.form.get('name', '')  # Get name, default to an empty string if not provided
-        cursor.execute('UPDATE subscribers SET name = ?, otp = NULL WHERE email = ?', (name, email))
+        cursor.execute('UPDATE subscribers SET name = %s, otp = NULL WHERE email = %s', (name, email))
         conn.commit()
         conn.close()
         flash('Thank you for subscribing! Your subscription is now confirmed.')
@@ -133,9 +131,9 @@ def verify():
 
 @app.route('/about')
 def about():
-    print("about us")
     return render_template('about.html')
 
 
 if __name__ == '__main__':
     app.run(debug=True)
+
