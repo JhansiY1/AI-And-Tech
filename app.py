@@ -6,6 +6,8 @@ from dotenv import load_dotenv
 import os
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
+import psycopg2
+
 
 app = Flask(__name__)
 app.secret_key = os.urandom(24)  # Secure random key for session
@@ -13,10 +15,10 @@ app.secret_key = os.urandom(24)  # Secure random key for session
 
 # Database connection function
 def get_db_connection():
-    conn = sqlite3.connect('newsletter.db', check_same_thread=False)  # Path to your SQLite database file
-    conn.row_factory = sqlite3.Row  # To access columns by name
+    # Fetch the DATABASE_URL from environment variable
+    conn = psycopg2.connect(os.getenv('DATABASE_URL'))  # Use the PostgreSQL URL from Render
+    conn.autocommit = True
     return conn
-
 
 # Send OTP via email
 def send_otp_to_email(email, otp):

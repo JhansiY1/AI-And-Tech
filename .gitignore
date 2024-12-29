@@ -1,20 +1,20 @@
-# Ignore Python environment and IDE files
-__pycache__/
-*.pyc
-*.pyo
-.vscode/
-.idea/
-
-# Ignore .env file for sensitive credentials
+# Ignore environment variables file
 .env
 
 # Ignore SQLite database file
-*.db
+newsletter.db
 
-# Ignore any compiled files
-*.exe
-*.dll
-*.so
+# Ignore Python bytecode files
+__pycache__/
+*.pyc
 
-# Ignore log files
+# Ignore virtual environment folder (if using virtualenv)
+venv/
+env/
+
+# Ignore IDE/editor configurations
+.vscode/
+.idea/
+
+# Ignore logs
 *.log
