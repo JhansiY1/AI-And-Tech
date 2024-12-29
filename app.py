@@ -1,19 +1,16 @@
-from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import Flask, render_template, request, redirect, url_for, flash, session
 import random
 import smtplib
 import psycopg2
 import os
 from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
 from dotenv import load_dotenv
 
 app = Flask(__name__)
 app.secret_key = os.urandom(24)  # Secure random key for session
 
-
 # Database connection function
 def get_db_connection():
-    # Fetch the DATABASE_URL from environment variable
     conn = psycopg2.connect(os.getenv('DATABASE_URL'))  # Use the PostgreSQL URL from Render
     conn.autocommit = True
     return conn
@@ -63,23 +60,11 @@ def subscribe():
     cursor.execute('SELECT * FROM subscribers WHERE email = %s', (email,))
     existing_user = cursor.fetchone()
 
-    # If the email exists, send a new OTP instead of inserting into the database
     if existing_user:
-        # Generate a new OTP
-        otp = str(random.randint(100000, 999999))
-
-        # Send OTP to the user's email
-        if not send_otp_to_email(email, otp):
-            conn.close()
-            return redirect(url_for('signup'))
-
-        # Update OTP for existing email
-        cursor.execute('UPDATE subscribers SET otp = %s WHERE email = %s', (otp, email))
-        conn.commit()
+        # If the email already exists, notify the user and do not send OTP
+        flash('Account already exists.')
         conn.close()
-
-        flash('A 6-digit OTP has been sent to your email. Please verify it below.')
-        return render_template('verify.html', email=email)
+        return redirect(url_for('signup'))  # Do not send OTP or proceed with subscription
 
     # If the email does not exist, proceed with new subscription
     otp = str(random.randint(100000, 999999))
@@ -89,10 +74,10 @@ def subscribe():
         conn.close()
         return redirect(url_for('signup'))
 
-    # Insert the email and OTP into the database (without name)
-    cursor.execute('INSERT INTO subscribers (name, email, otp) VALUES (%s, %s, %s)', ("Unknown", email, otp))
-    conn.commit()
-    conn.close()
+    # Store the OTP temporarily in the session, no database storage yet
+    session['otp'] = otp
+    session['email'] = email
+    session['name'] = name
 
     flash('A 6-digit OTP has been sent to your email. Please verify it below.')
     return render_template('verify.html', email=email)
@@ -108,26 +93,31 @@ def verify():
         flash('Invalid data submitted. Please try again.')
         return redirect(url_for('signup'))
 
-    conn = get_db_connection()
-    cursor = conn.cursor()
+    # Check if the OTP entered matches the one stored in the session
+    if entered_otp == session.get('otp'):
+        # OTP is correct, store data in the database
+        name = session.get('name', '')  # Get name from session
+        conn = get_db_connection()
+        cursor = conn.cursor()
 
-    # Retrieve the OTP stored in the database for the given email
-    cursor.execute('SELECT otp FROM subscribers WHERE email = %s', (email,))
-    subscriber = cursor.fetchone()
-
-    if subscriber and subscriber[0] == entered_otp:
-        # OTP is correct
-        name = request.form.get('name', '')  # Get name, default to an empty string if not provided
-        cursor.execute('UPDATE subscribers SET name = %s, otp = NULL WHERE email = %s', (name, email))
+        # Insert the email, OTP (which will be cleared), and name into the database
+        cursor.execute('INSERT INTO subscribers (name, email, otp) VALUES (%s, %s, %s)', (name, email, session.get('otp')))
         conn.commit()
         conn.close()
+
+        # Clear the session after successful verification
+        session.pop('otp', None)
+        session.pop('email', None)
+        session.pop('name', None)
+
         flash('Thank you for subscribing! Your subscription is now confirmed.')
         return redirect(url_for('home'))  # Redirect to homepage after successful verification
+
     else:
-        # OTP is incorrect
-        flash('OTP does not match. Please try again.')
-        conn.close()
-        return redirect(url_for('signup'))  # Redirect back to sign up for re-entry
+        # OTP is incorrect, do not insert/update any data
+        flash('OTP is incorrect. Please try again.')
+        return redirect(url_for('signup'))  # Redirect back to sign-up page
+
 
 @app.route('/about')
 def about():
@@ -136,4 +126,3 @@ def about():
 
 if __name__ == '__main__':
     app.run(debug=True)
-
