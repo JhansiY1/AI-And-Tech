@@ -7,6 +7,25 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='about.css') }}">
 </head>
 <body>
+    <!-- Navigation Bar -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <a href="/">AI Updates</a>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/about">About Us</a></li>
+                </ul>
+            </nav>
+            <div class="cta">
+                <a href="/signup" class="btn">Sign Up</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- About Content -->
     <div class="about-container">
         <header class="about-header">
             <h1>About Us</h1>

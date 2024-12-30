@@ -6,10 +6,10 @@
 }
 
 body {
-  font-family: Arial, sans-serif;
-  background-color: #121212; /* Dark background */
-  color: #f0f0f0; /* Light text */
-  line-height: 1.6;
+  font-family: Arial, sans-serif; 
+  background-color: #121212; /*Dark background*/
+  color: #f0f0f0; /*Light text*/
+   line-height: 1.6;
 }
 
 /* Header Styles */
@@ -72,7 +72,7 @@ body {
 
 /* Hero Section */
 .hero {
-  background-color: #121212; /* Dark theme background */
+  background-color: #121212; /*Dark theme background*/
   padding: 60px 20px;
   text-align: center;
   display: block; /* Ensure it takes full width */
@@ -204,55 +204,59 @@ body {
   padding: 0 20px; /* Add some padding for better layout */
 }
 
-/* Demo Carousel Styles */
+/* General Carousel Styles */
 .demo-carousel {
   position: relative;
-  max-width: 800px; /* Adjusted for larger view */
-  margin: 0 auto;
-  overflow: hidden; /* Hide images out of view */
-  border-radius: 10px; /* Rounded corners */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Shadow to create depth */
-  background-color: #1e1e1e; /* Dark background */
+  max-width: 500px;
+  margin: 20px auto;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  background-color: #1e1e1e;
 }
 
-/* Carousel Images */
+/* Carousel Wrapper */
 .carousel {
   display: flex;
-  transition: transform 0.5s ease-in-out; /* Smooth sliding transition */
+  transition: transform 0.5s ease-in-out;
+  width: 100%;
+}
+
+/* Individual Carousel Items */
+.carousel-item {
+  min-width: 100%; /* Each item takes full width */
+  box-sizing: border-box;
 }
 
 .carousel img {
   width: 100%;
   height: auto;
-  object-fit: cover; /* Maintain aspect ratio without stretching */
-  border-radius: 10px; /* Rounded corners for images */
+  object-fit: cover;
+  border-radius: 10px;
+  padding-bottom: 35px;
 }
 
-/* Carousel Navigation Buttons */
-.carousel-buttons {
+/* Carousel Dots */
+.carousel-dots {
   position: absolute;
-  top: 50%;
+  bottom: 15px;
   width: 100%;
   display: flex;
-  justify-content: space-between;
-  transform: translateY(-50%);
+  justify-content: center;
+  gap: 10px;
 }
 
-.carousel-buttons button {
-  background: rgba(0, 0, 0, 0.6);
-  color: #f0f0f0;
-  border: none;
-  padding: 15px;
-  cursor: pointer;
+.dot {
+  width: 12px;
+  height: 12px;
+  background: rgba(255, 255, 255, 0.5);
   border-radius: 50%;
-  transition: background 0.3s ease, transform 0.3s ease;
-  font-size: 18px;
+  cursor: pointer;
+  transition: background 0.3s ease;
 }
 
-.carousel-buttons button:hover {
-  background: #00d1b2;
-  color: #121212;
-  transform: scale(1.1); /* Button hover effect */
+.dot.active {
+  background: #00d1b2; /* Highlighted dot */
 }
 
 /* Footer Section */
@@ -384,3 +388,5 @@ body {
       opacity: 1;
   }
 }
+
+

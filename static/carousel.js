@@ -1,34 +1,33 @@
-document.addEventListener("DOMContentLoaded", function() {
-  const prevButton = document.querySelector(".prev");
-  const nextButton = document.querySelector(".next");
-  const carousel = document.querySelector(".carousel");
-  const images = document.querySelectorAll(".carousel img");
+document.addEventListener('DOMContentLoaded', () => {
+    const carousel = document.querySelector('.carousel');
+    const dots = document.querySelectorAll('.dot');
+    const items = document.querySelectorAll('.carousel-item');
+    let currentIndex = 0;
 
-  let currentIndex = 0;
+    // Function to update carousel position and active dot
+    function updateCarousel(index) {
+        const offset = -index * 100; // Shift the carousel by 100% for each index
+        carousel.style.transform = `translateX(${offset}%)`;
 
-  function updateCarousel() {
-      const width = images[0].clientWidth;
-      carousel.style.transform = `translateX(-${currentIndex * width}px)`;
-  }
+        // Update active dot
+        dots.forEach(dot => dot.classList.remove('active'));
+        dots[index].classList.add('active');
+    }
 
-  nextButton.addEventListener("click", function() {
-      if (currentIndex < images.length - 1) {
-          currentIndex++;
-      } else {
-          currentIndex = 0;  // Loop back to the first image
-      }
-      updateCarousel();
-  });
+    // Event listeners for dots
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+            currentIndex = index;
+            updateCarousel(currentIndex);
+        });
+    });
 
-  prevButton.addEventListener("click", function() {
-      if (currentIndex > 0) {
-          currentIndex--;
-      } else {
-          currentIndex = images.length - 1;  // Loop back to the last image
-      }
-      updateCarousel();
-  });
+    // Auto-rotation logic
+    setInterval(() => {
+        currentIndex = (currentIndex + 1) % items.length; // Loop back to the start
+        updateCarousel(currentIndex);
+    }, 5000); // Adjust rotation speed in milliseconds
 
-  // Initial carousel setup
-  updateCarousel();
+    // Initialize carousel
+    updateCarousel(currentIndex);
 });
