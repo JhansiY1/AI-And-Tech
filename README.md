@@ -4,6 +4,7 @@
 ## Project Description  
 AI Updates makes it easy to stay up-to-date with everything in the world of artificial intelligence. From the latest news to new tools and product updates, we bring it all straight to your inbox. Simple, convenient, and made for anyone who wants to stay in the know.
 
+link to the website:-https://ai-and-tech.onrender.com/
 ---
 ## Features and Functionality  
 - **User-Friendly Interface**  
@@ -39,8 +40,10 @@ AI Updates makes it easy to stay up-to-date with everything in the world of arti
    ```bash  
    git clone <repository_url>  
    cd <repository_name>
+   
 2.**Install Dependencies**  
   pip install -r requirements.txt  
+  
 3.**create .env file with details below**
   
   SENDER_EMAIL='aiandtechnewsletter@gmail.com'
@@ -56,7 +59,7 @@ AI Updates makes it easy to stay up-to-date with everything in the world of arti
 
 5.**go to the link**
 
-  in terminal it will show link like this  Running on http://127.0.0.1:5000 ctrl+click on the link it will open a website on your system 
+  in terminal it will show link like this  [Running on http://127.0.0.1:5000] ctrl+click on the link it will open  website locally in your default browser.
 
     
 6.**Subscribing**
@@ -64,9 +67,9 @@ AI Updates makes it easy to stay up-to-date with everything in the world of arti
   now hit sign up or Get started for free button to subscribe,enter details and enter otp(note-check for the otp in spam mails and report it as not spam)
 
    
-7.**sending mails to subscribers**
+7.**sending updates to subscribers**
 
-  run python file named mailer.py to send AI updates to subscribers, instead of doing this manually we can upload this python file in "python anywhere" 
+  run python file named mailer.py to send AI updates to subscribers, instead of doing this manually, we can upload this python file in "python anywhere" 
   and can set the timer to run the file automatically.
 
   note:- if requests and lxml are not already available in your Python environment.
