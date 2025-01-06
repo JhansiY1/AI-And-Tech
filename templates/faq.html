@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQs</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='faqs.css') }}">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <a href="/">AI Updates</a>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/faqs">FAQ's</a></li>
+                    <li><a href="/about">About Us</a></li>
+                </ul>
+            </nav>
+            <div class="cta">
+                <a href="/signup" class="btn">Sign Up</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- FAQ Section -->
+    <div class="faq-container">
+        <header class="faq-header">
+            <h1>Frequently Asked Questions</h1>
+        </header>
+        <section class="faq-content">
+            <div class="faq-item">
+                <div class="question">What is AI Updates?</div>
+                <div class="answer">
+                    AI Updates is a platform delivering curated AI news, product updates, and insights directly to your inbox.
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="question">How often will I receive updates?</div>
+                <div class="answer">
+                    You will receive updates daily to keep you informed everyday about new updates.
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="question">Is this service free?</div>
+                <div class="answer">
+                    Yes, our basic service is completely free!.
+                </div>
+            </div>
+        </section>
+    </div>
+    <script src="{{ url_for('static', filename='faqs.js') }}"></script>
+</body>
+</html>
